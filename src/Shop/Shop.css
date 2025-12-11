@@ -45,25 +45,40 @@ article> section.info{
     display: flex;
     flex-direction: column;
     background-color: rgba(169, 169, 169, 0.158);
+    color: var(--primary-color);
 }
 
 article > section.info > h2.title{
-    margin-top: 5px;
+    flex: 1;
     font-size: 1rem;
-    text-align: left;
+    text-align: center;
+    padding: 5px;
 }
 
-article > section.info > h2.price, h2.category{
-    font-size: 0.5rem;
-    text-align: left;
-    padding: 10px;
-    display: inline-block;
+article > section.info > .price-cat{
+    display: flex;
+    justify-content: flex-end;
+    background-color: var(--second-color);
+    padding: 5px;
+    gap: 5px;
 }
+
+.price-cat h2{
+    font-size: 0.8rem;
+    background-color: var(--third-color);
+    border-radius: 10px;
+    padding: 3px 7px;
+}
+
 
 article > section.info > section.actions{
     background-color: rgba(169, 169, 169, 0.334);
     width: 100%;
 }
+
+
+
+
 
 section.actions{
     padding: 15px;
@@ -132,7 +147,6 @@ section.actions > button.add-cart{
 section.actions > button.add-cart:hover{
     background-color: var(--second-color);
     color: var(--third-color);
-    font-weight: bolder;
     cursor: pointer;
 }
 
