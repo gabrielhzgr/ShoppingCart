@@ -3,24 +3,33 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import './index.css'
 import App from './App.jsx'
-import Cart from './Components/Cart.jsx'
-import Home from './Components/Home.jsx'
-import Shop from './Components/Shop.jsx'
-
+import ErrorPage from './ErrorPage.jsx'
+import Home from './Home.jsx'
+import Shop from './Shop/Shop.jsx'
+import Cart from './Cart.jsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
-      {index: true, path: 'home', element: <Home />},
+      {index: true, element: <Home />},
+      {path: 'home', element: <Home />},
       {path: 'shop', element: <Shop />},
-      {path: 'cart', element: <Cart />}
-    ]
+      {path: 'cart', element: <Cart />},
+    ],
+    errorElement: <ErrorPage />
   }
+  
 ])
+
+const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router}></RouterProvider>
+    </QueryClientProvider>
+    
   </StrictMode>,
 )

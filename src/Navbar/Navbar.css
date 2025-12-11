@@ -1,0 +1,54 @@
+nav{
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    height: 60px;
+}
+
+nav > .links{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-right: 20px;
+}
+
+nav > .links > a{
+    padding: 5px 5px 5px 7px;
+    color: var(--primary-color);
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-style: italic;
+    font-weight: bolder;
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-style: italic;
+    text-shadow: var(--shadow);
+    text-decoration: underline solid var(--third-color) 5%;
+    text-underline-offset: 3px;
+   
+    
+}
+
+nav > .links > a:hover{
+    background-color: white;
+    color: var(--primary-color);
+    text-decoration: underline var(--second-color);
+}
+
+.cart-link > i{
+    font-size: 0.6rem;
+}
+
+.shop-title{
+    font-size: 1.5rem;
+    color: var(--third-color);
+    font-style: italic;
+    user-select: none;
+    margin-left: 10px;
+}
+

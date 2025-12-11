@@ -1,0 +1,179 @@
+main >input{
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    background-color: var(--third-color);
+    border-bottom: medium solid var(--primary-color);
+    padding: 5px;
+    width: 100%;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+section.articles{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px
+}
+
+article{
+    border: none;
+    min-width: 250px;
+    flex:1;
+    border-radius: 25px;
+    border-bottom: medium solid var(--primary-color);
+    border-top: medium solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 600px;
+}
+
+article > img{
+    width: 100%;
+    aspect-ratio: 1/1.5;
+    max-height: 300px;
+}
+
+article> section.info{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(169, 169, 169, 0.158);
+}
+
+article > section.info > h2.title{
+    margin-top: 5px;
+    font-size: 1rem;
+    text-align: left;
+}
+
+article > section.info > h2.price, h2.category{
+    font-size: 0.5rem;
+    text-align: left;
+    padding: 10px;
+    display: inline-block;
+}
+
+article > section.info > section.actions{
+    background-color: rgba(169, 169, 169, 0.334);
+    width: 100%;
+}
+
+section.actions{
+    padding: 15px;
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+    background-color: var(--primary-color);
+}
+
+section.actions .quantity{
+    display: flex; 
+}
+
+.quantity .show-quant{
+    background-color: var(--third-color);
+    box-shadow: 0px 0px 3px grey inset;
+    width: 100%;
+    max-width: 170px;
+    border-bottom:  black;  
+}
+
+.quantity button{
+    width: 40px;
+    border: none;   
+}
+
+.quantity button:hover{
+    cursor: pointer;
+}
+
+.quantity button.more{
+   color: dodgerblue;
+   border-top-right-radius: 25px;
+   border-bottom-right-radius: 25px;
+}
+
+.quantity button.less{
+    color: black;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}  
+
+.quantity button.more:hover{
+    background-color: dodgerblue;
+    color: white;
+}
+
+.quantity button.less:hover{
+    background-color: black;
+    color: white;
+}  
+
+.show-quant{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.actions > button.add-cart{
+    border-radius: 25px;
+    padding: 5px 10px;
+    border: none;
+    background-color: var(--third-color);
+}
+
+section.actions > button.add-cart:hover{
+    background-color: var(--second-color);
+    color: var(--third-color);
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+section.skeleton{
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+section.skeleton > article, input.skeleton{
+    background-image: linear-gradient(to right, lightgrey, whitesmoke, lightgrey);
+    background-size: 200%;
+    background-repeat: no-repeat;
+    animation-name: skeleton;
+    animation-duration:2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    border: none;
+}
+
+section.skeleton > article{
+    flex: 1;
+    max-width: 250px;
+    aspect-ratio: 1/1;
+}
+
+@keyframes skeleton {
+   from{
+    background-position: 100% 0;
+   }
+
+   to{
+    background-position: 0% 0;
+   }
+}
+
+
+
+
+
+
+

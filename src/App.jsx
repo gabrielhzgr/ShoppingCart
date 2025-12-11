@@ -1,13 +1,13 @@
-import { Outlet } from 'react-router'
-import Navbar from './Components/Navbar'
+import {useParams, Outlet } from "react-router"
+import Navbar from "./Navbar/Navbar.jsx"
+import { useState } from "react"
+export default function App(){
+    const [items, setItems] = useState([])
 
-function App() {
-  return (
-    <>
-      <Navbar />
-      <Outlet />
-    </>
-  )
+    return (
+        <>
+            <Navbar itemsSize={items.length}></Navbar>
+            <Outlet context={{items, setItems}}/>
+        </>
+    )
 }
-
-export default App
