@@ -1,13 +1,11 @@
 import { Form } from "react-router"
-import Card from "../Card"
+import Card from "./Card"
 import { useState } from "react"
 import './Shop.css'
 import { useQuery } from "@tanstack/react-query"
 import LoadingShop from "./LoadingShop"
 export default function Shop(){
     const [search, setSearch] = useState('') 
-
-
     
     const {data, error, isPending:loading} = useQuery({
             queryKey: ['items'],
@@ -18,7 +16,7 @@ export default function Shop(){
                     throw new Error('HTTP error: Status ${response.status}')
                 }
 
-                return response.json()
+                return response.json()  
             }
         }
     )

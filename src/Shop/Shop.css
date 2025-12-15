@@ -24,7 +24,7 @@ section.articles{
 article{
     border: none;
     min-width: 250px;
-    max-width: 380px;
+    max-width: 350px;
     flex:1;
     border-radius: 25px;
     border-bottom: medium solid var(--primary-color);
@@ -77,10 +77,6 @@ article > section.info > section.actions{
     width: 100%;
 }
 
-
-
-
-
 section.actions{
     padding: 15px;
     display: flex;
@@ -97,7 +93,7 @@ section.actions .quantity{
     background-color: var(--third-color);
     box-shadow: 0px 0px 3px grey inset;
     width: 100%;
-    max-width: 170px;
+    max-width: 80px;
     border-bottom:  black;  
 }
 
@@ -139,6 +135,7 @@ section.actions .quantity{
 }
 
 section.actions > button.add-cart{
+    font-size: 0.7rem;
     border-radius: 25px;
     padding: 5px 10px;
     border: none;
@@ -150,6 +147,7 @@ section.actions > button.add-cart:hover{
     color: var(--third-color);
     cursor: pointer;
 }
+
 
 section.skeleton{
     flex: 1;
