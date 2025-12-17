@@ -42,6 +42,9 @@ nav > .links > a:hover{
 
 .cart-link > i{
     font-size: 0.6rem;
+    color: var(--second-color);
+    text-shadow: none;
+    text-decoration-line: none;
 }
 
 .shop-title{

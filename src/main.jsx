@@ -6,7 +6,7 @@ import App from './App.jsx'
 import ErrorPage from './ErrorPage.jsx'
 import Home from './Home.jsx'
 import Shop from './Shop/Shop.jsx'
-import Cart from './Cart.jsx'
+import Cart from './Cart/Cart.jsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 const router = createBrowserRouter([
   {

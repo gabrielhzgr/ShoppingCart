@@ -1,0 +1,24 @@
+import { useOutletContext } from "react-router"
+import './Cart.css'
+import Card from "./Card.jsx"
+import { useState, useEffect, use} from "react"
+
+export default function Cart(){
+    const [cartItems, setCartItems] = useOutletContext()
+    const [deleteId, setDeleteId] = useState(null)
+
+    return (
+        <main>
+            {Object.keys(cartItems).length==0 ? 'No items added yet' : null}
+            {Object.keys(cartItems).map(id=>{
+                return (
+                <Card 
+                    key={id}
+                    item={cartItems[id]} 
+                    cartItems={cartItems}
+                    setCartItems={setCartItems}
+                />)
+            })}
+        </main>
+    )
+}

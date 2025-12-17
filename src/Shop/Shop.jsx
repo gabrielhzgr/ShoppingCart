@@ -1,11 +1,14 @@
-import { Form } from "react-router"
+
 import Card from "./Card"
-import { useState } from "react"
+import {useState } from "react"
 import './Shop.css'
 import { useQuery } from "@tanstack/react-query"
 import LoadingShop from "./LoadingShop"
+
+
 export default function Shop(){
-    const [search, setSearch] = useState('') 
+    const [search, setSearch] = useState('')
+
     
     const {data, error, isPending:loading} = useQuery({
             queryKey: ['items'],
@@ -24,15 +27,11 @@ export default function Shop(){
     if(data){
         filteredData = data.filter((item)=>{
 
-            let title = item.title.toLowerCase()
-            let category = item.category.toLowerCase()
-
-            return (title.includes(search.toLocaleLowerCase()) || 
-            category.includes(search))
+            return (item.title.includes(search.toLocaleLowerCase()) || 
+            item.category.includes(search))
         })
         
     }
-
 
     return (
         <main>

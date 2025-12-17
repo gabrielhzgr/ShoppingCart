@@ -3,7 +3,7 @@ main >input{
     outline: none;
     border-radius: 25px;
     background-color: var(--third-color);
-    border-bottom: medium solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
     padding: 5px;
     width: 100%;
 }
@@ -18,59 +18,84 @@ section.articles{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px
+    gap: 20px
 }
 
 article{
-    border: none;
+    position: relative;
     min-width: 250px;
     max-width: 350px;
     flex:1;
     border-radius: 25px;
-    border-bottom: medium solid var(--primary-color);
-    border-top: medium solid var(--primary-color);
+    box-shadow: 0px 2px 3px black;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     max-height: 600px;
+    
 }
 
 article > img{
-    width: 100%;
+    translate: -3.5% -4% ;
+    width: 107%;
     aspect-ratio: 1/1.5;
     max-height: 300px;
 }
 
+
 article> section.info{
     flex: 1;
     display: flex;
+    gap: 10px;
     flex-direction: column;
-    background-color: rgba(169, 169, 169, 0.158);
-    color: var(--primary-color);
+    color: var(--third-color);
+    background-color: var(--primary-color);
+    padding: 10px;
+    border: thin solid var(--third-color);
 }
 
-article > section.info > h2.title{
+section.info > h2{
+    border: thin solid var(--third-color);
+    border-radius: 25px;
+}
+
+
+section.info > h2.title{
     flex: 1;
-    font-size: 1rem;
-    text-align: center;
-    padding: 5px;
+    font-size: 1.1rem;
+    max-height: 5.2rem;
+    display: block;
+    overflow-y: scroll;
+    text-overflow: ellipsis;
+    scrollbar-color: transparent transparent;
+    font-style: italic;
+    justify-content: center;
+    padding: 10px;
+    text-shadow: 0px 1px 1px var(--third-color);
 }
 
-article > section.info > .price-cat{
-    display: flex;
-    justify-content: flex-end;
-    background-color: var(--second-color);
-    padding: 5px;
-    gap: 5px;
+section.info > h2.title:hover{
+    scrollbar-color: var(--third-color) var(--primary-color) ;
+    
 }
 
-.price-cat h2{
-    font-size: 0.8rem;
-    background-color: var(--third-color);
-    border-radius: 10px;
-    padding: 3px 7px;
+section.info > h2.price{
+    font-size: 1.5rem;
+    text-align: right;
+    font-style: italic;
+    text-decoration: underline;
+    width: fit-content;
+    align-self: flex-end;
+    padding: 3px 10px;
 }
 
+section.info > h2.category{
+    align-self: flex-end;
+    font-size: 0.6rem;
+    width: fit-content;
+    border: thin solid var(--third-color);
+    border-radius: 25px;
+    padding: 3px 5px;
+}
 
 article > section.info > section.actions{
     background-color: rgba(169, 169, 169, 0.334);
@@ -83,6 +108,10 @@ section.actions{
     justify-content: right;
     gap: 10px;
     background-color: var(--primary-color);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border: thin solid var(--third-color)
+    
 }
 
 section.actions .quantity{
@@ -99,7 +128,7 @@ section.actions .quantity{
 
 .quantity button{
     width: 40px;
-    border: none;   
+    border: none;  
 }
 
 .quantity button:hover{
@@ -107,24 +136,24 @@ section.actions .quantity{
 }
 
 .quantity button.more{
-   color: dodgerblue;
-   border-top-right-radius: 25px;
-   border-bottom-right-radius: 25px;
+   color: var(--add-color);
+   border-top-right-radius: 10px;
+   border-bottom-right-radius: 10px;
 }
 
 .quantity button.less{
-    color: black;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
+    color: var(--less-color);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }  
 
 .quantity button.more:hover{
-    background-color: dodgerblue;
+    background-color: var(--add-color);
     color: white;
 }
 
 .quantity button.less:hover{
-    background-color: black;
+    background-color: var(--less-color);
     color: white;
 }  
 
@@ -148,6 +177,9 @@ section.actions > button.add-cart:hover{
     cursor: pointer;
 }
 
+section.actions input{
+    padding-left: 5px;
+}
 
 section.skeleton{
     flex: 1;

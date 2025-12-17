@@ -2,12 +2,12 @@ import {useParams, Outlet } from "react-router"
 import Navbar from "./Navbar/Navbar.jsx"
 import { useState } from "react"
 export default function App(){
-    const [items, setItems] = useState([])
+    const [cartItems, setCartItems] = useState({})
 
     return (
         <>
-            <Navbar itemsSize={items.length}></Navbar>
-            <Outlet context={{items, setItems}}/>
+            <Navbar itemsSize={Object.keys(cartItems).length}></Navbar>
+            <Outlet context={[cartItems, setCartItems]}/>
         </>
     )
 }

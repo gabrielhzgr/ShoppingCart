@@ -5,9 +5,9 @@ export default function Navbar({itemsSize}){
         <nav>
             <h1 className="shop-title">MYSHOP</h1>
             <ul className="links">
-                <Link to='/home'>🏠Home</Link>
-                <Link to='/shop'>🛍️Shop</Link>
-                <Link to='/cart' className="cart-link">
+                <Link to='/home' viewTransition>🏠Home</Link>
+                <Link to='/shop' viewTransition>🛍️Shop</Link>
+                <Link to='/cart' viewTransition className="cart-link">
                 🛒Cart
                     <i>({itemsSize})</i>
                 </Link>
