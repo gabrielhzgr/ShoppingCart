@@ -9,16 +9,25 @@ export default function Cart(){
 
     return (
         <main>
-            {Object.keys(cartItems).length==0 ? 'No items added yet' : null}
-            {Object.keys(cartItems).map(id=>{
-                return (
-                <Card 
-                    key={id}
-                    item={cartItems[id]} 
-                    cartItems={cartItems}
-                    setCartItems={setCartItems}
-                />)
-            })}
+
+            <section className="cart">
+                {Object.keys(cartItems).length==0 ? <p>No items added yet</p> : 
+                Object.keys(cartItems).map(id=>{
+                    return (
+                    <Card 
+                        key={id}
+                        item={cartItems[id]} 
+                        cartItems={cartItems}
+                        setCartItems={setCartItems}
+                    />)
+                })
+                } 
+                
+                
+                
+            </section>
+            
+            
         </main>
     )
 }

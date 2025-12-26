@@ -1,0 +1,115 @@
+main{
+    padding: 0;
+}
+
+
+
+section.main-photo{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../assets/main-image-blur.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+section.main-photo > h1{
+    
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: var(--primary-color);
+    color: whitesmoke;
+    padding: 10px;
+    border-radius: 25px;
+    width: fit-content;
+
+}
+
+section.main-photo > h1.welcome{
+    position: absolute;
+    top: 70px;
+    text-align: center;
+    background-color: rgba(255, 228, 196, 0.375);
+    backdrop-filter: blur(5px);
+}
+
+section.main-photo > h1.discover{
+    position: sticky;
+    top: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 228, 196, 0.375);
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+}
+
+section.main-photo > h1.discover:hover{
+    background-color: var(--primary-color);
+    color: white;
+}
+
+h1.discover > a{
+    text-decoration: none;
+}
+
+h1.discover > a:hover{
+    text-decoration: underline;
+}
+
+h1.discover > a:visited{
+    color: white;
+}
+
+
+
+@keyframes more-animation {
+  from{
+    margin-top: 0px;
+  }
+
+  to{
+    margin-top: 5px;
+  }
+    
+}
+
+h1.discover > .more-symbol{
+    border-radius: 100%;
+    padding: 4px;
+    width: fit-content;
+    color: white;
+    animation: more-animation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+h1.discover > .more-symbol:hover{
+    background-color: var(--primary-color);
+    color: white;
+}
+
+section#content{
+    padding: 20px;
+}
+
+
+.slider > .images{
+    height: 250px;
+    margin-bottom: 20px;
+    
+}
+
+.images > img{
+    width: 20%;
+    aspect-ratio: 1/1;
+    margin-right: 20px;
+    position: relative;
+}
+
+
+    
+
+
+

@@ -15,15 +15,16 @@ main{
 }
 
 section.articles{
+    padding: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px
+    gap: 30px
 }
 
 article{
     position: relative;
-    min-width: 250px;
+    min-width: 325px;
     max-width: 350px;
     flex:1;
     border-radius: 25px;

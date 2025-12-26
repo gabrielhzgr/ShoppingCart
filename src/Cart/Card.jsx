@@ -12,6 +12,9 @@ export default function Card({item, cartItems, setCartItems}){
         }
     },[deleting])
 
+    let myTotal = item.price*item.quantity
+    myTotal = myTotal.toFixed(2)
+
 
     return (
         (<div className="item">
@@ -52,9 +55,7 @@ export default function Card({item, cartItems, setCartItems}){
                         <span className={deleting ? 
                             "material-symbols-outlined trash disabled" :"material-symbols-outlined trash" } 
                             onClick={()=>{
-                                let cartCopy = cartItems
-                                delete cartCopy[item.id]
-                                setCartItems(cartCopy)
+                                setDeleting(true)
                             }}>  
                                 delete   
                         </span>  
@@ -63,17 +64,17 @@ export default function Card({item, cartItems, setCartItems}){
                 <div>
                         <h2 >Selected: <span>{`${item.quantity}`}</span></h2>
                         <h2>Price each: <span>{`$${item.price}`}</span></h2>
-                        <h2>Total: {`$${item.price*item.quantity.toFixed(2)}`}</h2>
+                        <h2>Total: {`$${myTotal}`}</h2>
                     </div> 
                     {deleting ? <div className={`confirmation-removal`}>
-                        <h2 className="info">Confirm removal?</h2>
-                        <button onClick={()=>{
+                        <h2 className="info">Proceed to remove?</h2>
+                        <button className="yes-delete"onClick={()=>{
                             let cartCopy = {...cartItems}
                             delete cartCopy[item.id]
                             setCartItems(cartCopy)
                             
                         }}>Yes</button>
-                        <button onClick={()=>{
+                        <button className="no-delete" onClick={()=>{
                             setDeleting(false)
                             }}>No</button>
             

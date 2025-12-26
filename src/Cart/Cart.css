@@ -1,11 +1,18 @@
+section.cart{
+    margin-top: 65px;
+}
 .item{
     display: flex;
     gap: 30px;
+    border-bottom: thin solid grey;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
 }
 
 .item > .info{
     border-radius: 25px;
-    box-shadow: 0px 2px 4px black;
+    border:  thin solid grey;
     overflow: hidden;
     width: 200px;
     height: min-content;
@@ -115,3 +122,24 @@ span.disabled{
     border: none;
 }
 
+.confirmation-removal{
+    background-color: rgba(128, 128, 128, 0.824);
+    border-radius: 20px;
+    padding: 15px;
+    color: white;
+}
+
+.yes-delete{
+    padding: 5px;
+    background-color: var(--delete-color);
+    color: white;
+    border-radius: 25px;
+    margin-right: 10px;
+}
+
+.no-delete{
+    padding: 5px;
+    background-color: lightgray;
+    color: white;
+    border-radius: 25px;
+}

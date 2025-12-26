@@ -29,7 +29,6 @@ html, body{
 }
 
 main{
-    padding: 20px;
     background-color: var(--third-color);
     flex: 1;
     box-shadow: 0px 0px 7px black inset;
