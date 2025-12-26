@@ -191,10 +191,10 @@ section.skeleton{
 }
 
 section.skeleton > article, input.skeleton{
-    background-image: linear-gradient(to right, lightgrey, whitesmoke, lightgrey);
+    background-image: var(--skeleton);
     background-size: 200%;
     background-repeat: no-repeat;
-    animation-name: skeleton;
+    animation-name: mySkeleton;
     animation-duration:2s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -207,15 +207,7 @@ section.skeleton > article{
     aspect-ratio: 1/1;
 }
 
-@keyframes skeleton {
-   from{
-    background-position: 100% 0;
-   }
 
-   to{
-    background-position: 0% 0;
-   }
-}
 
 
 
