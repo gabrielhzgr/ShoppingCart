@@ -33,7 +33,7 @@ export default function InfiniteSlider({title="Slider"}){
         }
         if(data){
             window.addEventListener('resize',onResize)
-            setInterval(()=>{
+            interval = setInterval(()=>{
                 if(resized){
                     resized = false
                     let images = imagesRef.current.querySelectorAll('.item')
