@@ -2,7 +2,7 @@ import { useEffect, useRef, useState} from "react"
 import { useQuery } from "@tanstack/react-query"
 export default function InfiniteSlider({title="Slider"}){
     const imagesRef = useRef(null)
-    let noOfOffers = 4
+    let noOfOffers = 6
     const {data, error, isPending:loading} = useQuery({
             queryKey: ['items'],
             queryFn: async () => {
