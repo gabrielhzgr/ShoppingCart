@@ -48,7 +48,6 @@ export default function InfiniteSlider({title="Slider"}){
                         images.forEach(image=>{
                             const parentPos = imagesRef.current.getBoundingClientRect()
                             const imagePos = image.getBoundingClientRect()
-                            const posno = Number(image.dataset.posno)
             
                             if(imagePos.left+imagePos.width <= parentPos.left){
                                 let lastImage = imagesRef.current.querySelector(`.item[data-posno="${posOfLast}"]`)
