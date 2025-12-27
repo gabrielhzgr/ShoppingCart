@@ -27,7 +27,7 @@ export default function Card({item}){
     }
 
     function addToCart(){
-        if(quantity!=='0'){
+        if(quantity!==0){
             if(item.id in cartItems){
                 setCartItems({...cartItems,[item.id]:{...item,'quantity':cartItems[item.id].quantity+quantity}})
             }else{
