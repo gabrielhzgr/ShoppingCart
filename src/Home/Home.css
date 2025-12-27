@@ -94,18 +94,29 @@ section#content{
     padding: 20px;
 }
 
-
-.slider > .images{
-    height: 250px;
-    margin-bottom: 20px;
-    
+section#content > .slider >.images{
+    display: flex;
 }
 
-.images > img{
+.slider > h2{
+    font-style: italic;
+}
+
+
+.images > .item{
     width: 20%;
     aspect-ratio: 1/1;
     margin-right: 20px;
     position: relative;
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+}
+
+.item > img{
+    flex: 1;
 }
 
 
