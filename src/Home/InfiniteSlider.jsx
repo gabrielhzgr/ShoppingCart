@@ -28,11 +28,25 @@ export default function InfiniteSlider({title="Slider"}){
         let interval = null
         let resized = false
         let posOfLast = noOfOffers-1
+        let paused = false
         function onResize(){
             resized = true 
         }
+        function onMouseOver(){
+            paused = true
+            console.log('mouse over');
+            
+        }
+        function onMouseOut(){
+            paused = false
+        }
+
+        
         if(data){
             window.addEventListener('resize',onResize)
+            imagesRef.current.addEventListener('mouseover',onMouseOver)
+            imagesRef.current.addEventListener('mouseout',onMouseOut)
+            
             interval = setInterval(()=>{
                 if(resized){
                     resized = false
@@ -40,7 +54,7 @@ export default function InfiniteSlider({title="Slider"}){
                     images.forEach(image=>{
                         image.style.right = '0px'
                     })
-                }else{
+                }else if(!resized && !paused){
                     let images = imagesRef.current.querySelectorAll('.item')
                     //20px is margin right of items
                     if((images[0].getBoundingClientRect().width + 20)*images.length > 
@@ -78,14 +92,18 @@ export default function InfiniteSlider({title="Slider"}){
                     }
                 }
             },10)
-            
         }
 
         return ()=>{
-            if(interval){
+            if(interval!==null){
                 clearInterval(interval)
             }
             window.removeEventListener('resize',onResize)
+            if(imagesRef.current!==null){
+                imagesRef.current.removeEventListener('mouseover',onMouseOver)
+                imagesRef.current.removeEventListener('mouseout',onMouseOut)
+            }
+            
         }
     },[data])
 

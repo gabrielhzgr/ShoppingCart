@@ -98,6 +98,19 @@ section#content > .slider >.images{
     display: flex;
 }
 
+section.skeleton{
+    height: 200px;
+    width: 100%;
+    background-image: var(--skeleton);
+    background-size: 200%;
+    background-repeat: no-repeat;
+    animation-name: mySkeleton;
+    animation-duration:2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    
+}
+
 .slider > h2{
     font-style: italic;
 }
