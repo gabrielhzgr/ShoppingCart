@@ -39,7 +39,6 @@ export default function InfiniteSlider({title="Slider"}){
             paused = false
         }
 
-        
         if(data){
             window.addEventListener('resize',onResize)
             imagesRef.current.addEventListener('mouseover',onMouseOver)
@@ -124,7 +123,7 @@ export default function InfiniteSlider({title="Slider"}){
     
     return (
         <section className="slider">
-            <h2>{title}</h2>
+            <h2><span>{title}</span></h2>
             {loading && 
                 <section className="skeleton">
                 </section>}

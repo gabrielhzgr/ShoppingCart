@@ -15,7 +15,7 @@ export default function Home(){
             <section id="content">
                 <Slider title='Offers'/>
                 <section className="about">
-                    <h2>What you can find here</h2>
+                    <h2><span>What you can find here</span></h2>
                     <section className="content">
                         <div className="clothing item">
                             <img src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_t.png" className="picture" alt="Clothing" />
