@@ -10,21 +10,22 @@ section.cart{
 
 }
 
-.item > .info{
+.item > .description{
     border-radius: 25px;
     border:  thin solid grey;
     overflow: hidden;
     width: 200px;
     height: min-content;
+    
 
 }
 
-.info > img{
+.description > img{
     width: 100%;
 }
 
 
-.info > p{
+.item > .description > p{
     background-color: transparent;
     user-select: text;
     flex: 1;
@@ -32,6 +33,7 @@ section.cart{
     align-items: center;
     padding: 10px;
     width: 100%;
+    color: black;
 }
 
 
@@ -112,7 +114,7 @@ span.trash:hover{
 
 
 
-.item > .confirmation-removal > h2.info{
+.item > .confirmation-removal > h2.description{
     font-size: 0.6rem;
 }
 

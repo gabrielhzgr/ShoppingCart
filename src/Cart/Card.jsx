@@ -18,7 +18,7 @@ export default function Card({item, cartItems, setCartItems}){
 
     return (
         (<div className="item">
-            <div className="info">
+            <div className="description">
                 <img src={item.image} alt={item.title} />
                 <p>{item.title}</p>  
             </div>

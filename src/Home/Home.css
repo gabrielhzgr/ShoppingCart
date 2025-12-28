@@ -94,12 +94,15 @@ section#content {
     padding: 20px;
 }
 
-section#content>* {
+
+section#content> * {
     margin-bottom: 20px;
+    border-bottom: thin solid grey;
 }
 
 section#content>.slider>.images {
     display: flex;
+    padding-bottom: 10px;
 }
 
 section.skeleton {
@@ -117,6 +120,7 @@ section.skeleton {
 
 .slider>h2 {
     font-style: italic;
+    margin-bottom: 10px;
 }
 
 
@@ -125,6 +129,9 @@ section.skeleton {
     aspect-ratio: 1/1;
     margin-right: 20px;
     position: relative;
+    border: thin solid black;
+    border-radius: 25px;
+    
 }
 
 .images>.item {
@@ -132,14 +139,27 @@ section.skeleton {
     flex-direction: column;
 }
 
-.item>img {
+.images>.item>img {
+    padding: 7px;
     flex: 1;
 }
 
+.images>.item >p{
+    text-align: center;
+    font-style: italic;
+    background-color: var(--primary-color);
+    color: white;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
 
 
+section.about{
+    padding-bottom: 10px;
+}
 section.about>h2 {
     font-style: italic;
+    margin-bottom: 10px;
 }
 
 section.about>section.content {
@@ -161,22 +181,27 @@ section.about>section.content {
     border-radius: 25px;
 }
 
-.about>.content>.item>div {
+.about>.content>.item>.info {
     height: 50%;
     background-image: url(../assets/main-image-blur.jpg);
     background-size: cover;
     background-attachment: fixed;
     width: 100%;
-
+    border-radius: 30px;
+    overflow: hidden;
 }
 
 .item>div>p {
-    background-color: rgba(255, 228, 196, 0.375);
-    backdrop-filter: blur(25px);
     width: 100%;
     height: 100%;
     color: white;
+    display: flex;
     text-align: center;
+    justify-content: center;
+    align-items: center;
     text-shadow: 0px 1px 3px grey;
     font-style: italic;
+    background-color: rgba(255, 228, 196, 0.375);
+    backdrop-filter: blur(20px);
+    
 }
