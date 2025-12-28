@@ -34,8 +34,6 @@ export default function InfiniteSlider({title="Slider"}){
         }
         function onMouseOver(){
             paused = true
-            console.log('mouse over');
-            
         }
         function onMouseOut(){
             paused = false
@@ -48,49 +46,64 @@ export default function InfiniteSlider({title="Slider"}){
             imagesRef.current.addEventListener('mouseout',onMouseOut)
             
             interval = setInterval(()=>{
-                if(resized){
-                    resized = false
-                    let images = imagesRef.current.querySelectorAll('.item')
-                    images.forEach(image=>{
-                        image.style.right = '0px'
-                    })
-                }else if(!resized && !paused){
-                    let images = imagesRef.current.querySelectorAll('.item')
-                    //20px is margin right of items
-                    if((images[0].getBoundingClientRect().width + 20)*images.length > 
-                    imagesRef.current.getBoundingClientRect().width){
+                //interval could be still working 
+                //before it is cleared by the cleanup function
+                //when this component is unmounted when leaving the 
+                //home page making the imagesRef raise errors
+                //because the dom is not there anymore
+                if(imagesRef.current!==null){
+                    if(resized){
+                        resized = false
+                        let images = imagesRef.current.querySelectorAll('.item')
                         images.forEach(image=>{
-                            const parentPos = imagesRef.current.getBoundingClientRect()
-                            const imagePos = image.getBoundingClientRect()
-            
-                            if(imagePos.left+imagePos.width <= parentPos.left){
-                                let lastImage = imagesRef.current.querySelector(`.item[data-posno="${posOfLast}"]`)
-                                let lastImagePos = lastImage.getBoundingClientRect().right+20
-                                image.style.right = `${-lastImagePos}px`
-                            }else{
-                                let currentRight =  Number(image.style.right.replace("px",""))
-                                image.style.right = `${currentRight+1}px`
-                            }
-                            
+                            image.style.right = '0px'
                         })
+                    }else if(!resized && !paused){
+                        let images
+                        try{
+                            images = imagesRef.current.querySelectorAll('.item') 
 
-                    }else{
-                        images.forEach(image=>{
-                            const parentPos = imagesRef.current.getBoundingClientRect()
-                            const imagePos = image.getBoundingClientRect()
-                            const posno = Number(image.dataset.posno)
-            
-                            if(imagePos.left+imagePos.width <= parentPos.left){
-                                let offset = (imagePos.width + 20) * posno
-                                image.style.right = `${-parentPos.width+offset}px`
-                            }else{
-                                let currentRight =  Number(image.style.right.replace("px",""))
-                                image.style.right = `${currentRight+1}px`
-                            }
+                        }catch(error){
+                            console.log(error.message)
+                        }
+                    
+                        //20px is margin right of items
+                        if((images[0].getBoundingClientRect().width + 20)*images.length > 
+                        imagesRef.current.getBoundingClientRect().width){
+                            images.forEach(image=>{
+                                const parentPos = imagesRef.current.getBoundingClientRect()
+                                const imagePos = image.getBoundingClientRect()
+                
+                                if(imagePos.left+imagePos.width <= parentPos.left){
+                                    let lastImage = imagesRef.current.querySelector(`.item[data-posno="${posOfLast}"]`)
+                                    let lastImagePos = lastImage.getBoundingClientRect().right+20
+                                    image.style.right = `${-lastImagePos}px`
+                                }else{
+                                    let currentRight =  Number(image.style.right.replace("px",""))
+                                    image.style.right = `${currentRight+1}px`
+                                }
+                                
+                            })
 
-                        })
+                        }else{
+                            images.forEach(image=>{
+                                const parentPos = imagesRef.current.getBoundingClientRect()
+                                const imagePos = image.getBoundingClientRect()
+                                const posno = Number(image.dataset.posno)
+                
+                                if(imagePos.left+imagePos.width <= parentPos.left){
+                                    let offset = (imagePos.width + 20) * posno
+                                    image.style.right = `${-parentPos.width+offset}px`
+                                }else{
+                                    let currentRight =  Number(image.style.right.replace("px",""))
+                                    image.style.right = `${currentRight+1}px`
+                                }
+
+                            })
+                        }
                     }
                 }
+                
             },10)
         }
 

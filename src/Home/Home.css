@@ -1,10 +1,10 @@
-main{
+main {
     padding: 0;
 }
 
 
 
-section.main-photo{
+section.main-photo {
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -13,8 +13,8 @@ section.main-photo{
     background-attachment: fixed;
 }
 
-section.main-photo > h1{
-    
+section.main-photo>h1 {
+
     left: 50%;
     transform: translate(-50%, 0);
     background-color: var(--primary-color);
@@ -25,7 +25,7 @@ section.main-photo > h1{
 
 }
 
-section.main-photo > h1.welcome{
+section.main-photo>h1.welcome {
     position: absolute;
     top: 70px;
     text-align: center;
@@ -33,7 +33,7 @@ section.main-photo > h1.welcome{
     backdrop-filter: blur(5px);
 }
 
-section.main-photo > h1.discover{
+section.main-photo>h1.discover {
     position: sticky;
     top: 70%;
     display: flex;
@@ -44,37 +44,37 @@ section.main-photo > h1.discover{
     cursor: pointer;
 }
 
-section.main-photo > h1.discover:hover{
+section.main-photo>h1.discover:hover {
     background-color: var(--primary-color);
     color: white;
 }
 
-h1.discover > a{
+h1.discover>a {
     text-decoration: none;
 }
 
-h1.discover > a:hover{
+h1.discover>a:hover {
     text-decoration: underline;
 }
 
-h1.discover > a:visited{
+h1.discover>a:visited {
     color: white;
 }
 
 
 
 @keyframes more-animation {
-  from{
-    margin-top: 0px;
-  }
+    from {
+        margin-top: 0px;
+    }
 
-  to{
-    margin-top: 5px;
-  }
-    
+    to {
+        margin-top: 5px;
+    }
+
 }
 
-h1.discover > .more-symbol{
+h1.discover>.more-symbol {
     border-radius: 100%;
     padding: 4px;
     width: fit-content;
@@ -85,55 +85,98 @@ h1.discover > .more-symbol{
     animation-direction: alternate;
 }
 
-h1.discover > .more-symbol:hover{
+h1.discover>.more-symbol:hover {
     background-color: var(--primary-color);
     color: white;
 }
 
-section#content{
+section#content {
     padding: 20px;
 }
 
-section#content > .slider >.images{
+section#content>* {
+    margin-bottom: 20px;
+}
+
+section#content>.slider>.images {
     display: flex;
 }
 
-section.skeleton{
+section.skeleton {
     height: 200px;
     width: 100%;
     background-image: var(--skeleton);
     background-size: 200%;
     background-repeat: no-repeat;
     animation-name: mySkeleton;
-    animation-duration:2s;
+    animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-    
+
 }
 
-.slider > h2{
+.slider>h2 {
     font-style: italic;
 }
 
 
-.images > .item{
-    width: 20%;
+.images>.item {
+    width: 25%;
     aspect-ratio: 1/1;
     margin-right: 20px;
     position: relative;
 }
 
-.images > .item{
+.images>.item {
     display: flex;
     flex-direction: column;
 }
 
-.item > img{
+.item>img {
     flex: 1;
 }
 
 
-    
 
+section.about>h2 {
+    font-style: italic;
+}
 
+section.about>section.content {
+    display: flex;
+    justify-content: center;
+}
 
+.about>.content>.item {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about>.content>.item>img {
+    width: 100%;
+    height: 50%;
+    box-shadow: 0px 0px 1px grey;
+    border-radius: 25px;
+}
+
+.about>.content>.item>div {
+    height: 50%;
+    background-image: url(../assets/main-image-blur.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+
+}
+
+.item>div>p {
+    background-color: rgba(255, 228, 196, 0.375);
+    backdrop-filter: blur(25px);
+    width: 100%;
+    height: 100%;
+    color: white;
+    text-align: center;
+    text-shadow: 0px 1px 3px grey;
+    font-style: italic;
+}
