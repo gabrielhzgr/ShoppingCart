@@ -1,7 +1,7 @@
 section.cart{
     margin-top: 65px;
 }
-.item{
+.cart > .item{
     display: flex;
     gap: 30px;
     border-bottom: thin solid grey;
