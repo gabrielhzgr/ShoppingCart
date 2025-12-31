@@ -21,7 +21,6 @@ export default function InfiniteSlider({title="Slider"}){
     if(data){
         filteredData = data.toSorted((item1,item2)=>item1.price-item2.price)
         filteredData = filteredData.slice(0,noOfOffers)
-    
     }
 
     useEffect(()=>{
@@ -122,7 +121,7 @@ export default function InfiniteSlider({title="Slider"}){
     
     
     return (
-        <section className="slider">
+        <section data-testid="slider" className="slider">
             <h2><span>{title}</span></h2>
             {loading && 
                 <section className="skeleton">
