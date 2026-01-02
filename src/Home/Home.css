@@ -121,7 +121,7 @@ section.skeleton {
 
 }
 
-.images>.category {
+.slider > .images>.item {
     width: 25%;
     aspect-ratio: 1/1;
     margin-right: 20px;
@@ -131,17 +131,17 @@ section.skeleton {
     
 }
 
-.images>.category {
+.slider>.images>.item {
     display: flex;
     flex-direction: column;
 }
 
-.images>.category>img {
+.slider>.images>.item>img {
     padding: 7px;
     flex: 1;
 }
 
-.images>.category >p{
+.slider>.images>.item >p{
     text-align: center;
     font-style: italic;
     background-color: var(--primary-color);
