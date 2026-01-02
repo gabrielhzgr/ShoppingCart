@@ -36,7 +36,7 @@ section.articles{
     gap: 30px
 }
 
-article{
+.articles > article{
     position: relative;
     min-width: 325px;
     max-width: 350px;

@@ -17,7 +17,7 @@ export default function Home(){
                 <section className="about">
                     <h2><span>What you can find here</span></h2>
                     <section className="content">
-                        <div className="clothing item">
+                        <div className="clothing category">
                             <img src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_t.png" className="picture" alt="Clothing" />
                             <div className='info'>
                                 <p>
@@ -27,7 +27,7 @@ export default function Home(){
                                 
                             </div>
                         </div>
-                        <div className="jewelry item">
+                        <div className="jewelry category">
                             <div className='info'>
                                 <p>
                                     Take a look to our jewelry, bracelets and rings,
@@ -37,7 +37,7 @@ export default function Home(){
                             </div>
                             <img src="https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_t.png" className="picture" alt="Jewely" />
                         </div>
-                        <div className="electronics item">
+                        <div className="electronics category">
                             <img src="https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_t.png" className="picture" alt="Electronics" />
                             <div className='info'>
                                 <p>
