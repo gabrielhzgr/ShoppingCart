@@ -56,6 +56,7 @@ export default function Shop(){
                     name='q'
                     value={search}
                     onChange={(e)=>setSearch(e.target.value)}
+                    className="search-items"
                 />
                     <button className="reset" onClick={resetFilters}>Clear search</button>
 
