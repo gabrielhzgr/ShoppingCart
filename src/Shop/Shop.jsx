@@ -49,14 +49,16 @@ export default function Shop(){
             {error && 'error'}
             {filteredData &&
             <>
-                <input 
+                
+                <div className="search">
+                    <input 
                     placeholder='🔍 Search items by description or category'
                     name='q'
                     value={search}
                     onChange={(e)=>setSearch(e.target.value)}
                 />
-                <div>
-                    <button className="reset" onClick={resetFilters}>Reset filters</button>
+                    <button className="reset" onClick={resetFilters}>Clear search</button>
+
                 </div>
                 <section className="articles">
                     {filteredData.map(item=><Card key={item.id} item={item}/>)}

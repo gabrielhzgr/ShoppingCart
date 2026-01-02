@@ -1,4 +1,4 @@
-main >input{
+main input{
     border: none;
     outline: none;
     border-radius: 25px;
@@ -7,12 +7,19 @@ main >input{
     padding: 5px;
     width: 80%;
     margin: 0 auto;
+    margin-left: 10px;
+    
+}
+
+.search{
     margin-top: 70px;
 }
 
 button.reset{
     padding: 2px 5px;
     border-radius: 25px;
+    margin: 0 auto;
+    margin-left: 10px;
 }
 
 main{
