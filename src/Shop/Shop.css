@@ -196,7 +196,7 @@ section.actions input{
     padding-left: 5px;
 }
 
-section.skeleton{
+section.loading-shop{
     flex: 1;
     display: flex;
     flex-wrap: wrap;
@@ -204,7 +204,7 @@ section.skeleton{
     justify-content: center;
 }
 
-section.skeleton > article, input.skeleton{
+section.loading-shop > article, input.skeleton{
     background-image: var(--skeleton);
     background-size: 200%;
     background-repeat: no-repeat;
@@ -213,9 +213,15 @@ section.skeleton > article, input.skeleton{
     animation-iteration-count: infinite;
     animation-direction: alternate;
     border: none;
+    
 }
 
-section.skeleton > article{
+input.skeleton{
+    margin-top: 70px;
+    margin-left: auto;
+}
+
+section.loading-shop > article{
     flex: 1;
     max-width: 250px;
     aspect-ratio: 1/1;
