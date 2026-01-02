@@ -19,7 +19,7 @@ export default function Card({item, cartItems, setCartItems}){
 
 
     return (
-        (<div className="item">
+        (<article className="item" aria-label={item.title}>
             <div className="description">
                 <img src={item.image} alt={item.title} />
                 <p>{item.title}</p>  
@@ -82,6 +82,6 @@ export default function Card({item, cartItems, setCartItems}){
             
                     </div> : null} 
             </div>   
-        </div>)
+        </article>)
     )
 }

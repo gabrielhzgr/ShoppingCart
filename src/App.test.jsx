@@ -260,7 +260,17 @@ describe('Test app',()=>{
             expect(screen.getByRole('heading',{name: 'Selected: 200'})).toBeInTheDocument()
             expect(screen.getByRole('heading',{name: 'Price each: $20.00'})).toBeInTheDocument()
             expect(screen.getByRole('heading',{name: 'Total: $4000.00'})).toBeInTheDocument()
+
+            
+            const cartArt1 = screen.getByRole('article',{name:'Article 1'})
+            await user.click(within(cartArt1).getByText('add'))
+            expect(screen.getByRole('heading',{name: 'Selected: 101'})).toBeInTheDocument()
+            expect(screen.getByRole('heading',{name: 'Price each: $10.00'})).toBeInTheDocument()
+            expect(screen.getByRole('heading',{name: 'Total: $1010.00'})).toBeInTheDocument()
+
         })
+
+        
         
     })
 

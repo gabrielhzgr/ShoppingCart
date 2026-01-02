@@ -20,9 +20,9 @@ export default function Card({item}){
         let text = event.target.value
         text = text.replace(/^0|[^0-9]/g,'')
         if(text==''){
-           setQuantity('0')  
+           setQuantity(0)  
         }else{
-             setQuantity(text)
+             setQuantity(Number(text))
         }
     }
 
