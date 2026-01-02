@@ -14,6 +14,8 @@ export default function Card({item, cartItems, setCartItems}){
 
     let myTotal = item.price*item.quantity
     myTotal = myTotal.toFixed(2)
+    let myPriceEach = item.price.toFixed(2)
+
 
 
     return (
@@ -63,7 +65,7 @@ export default function Card({item, cartItems, setCartItems}){
                 </div>
                 <div>
                         <h2 >Selected: <span>{`${item.quantity}`}</span></h2>
-                        <h2>Price each: <span>{`$${item.price}`}</span></h2>
+                        <h2>Price each: <span>{`$${myPriceEach}`}</span></h2>
                         <h2>Total: {`$${myTotal}`}</h2>
                     </div> 
                     {deleting ? <div className={`confirmation-removal`}>

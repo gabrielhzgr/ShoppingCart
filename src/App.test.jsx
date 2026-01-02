@@ -1,5 +1,5 @@
-import { vi, describe, it, expect } from 'vitest'
-import { render, screen } from "@testing-library/react";
+import { vi, describe, it, expect, beforeEach } from 'vitest'
+import { findByText, queryByText, render, screen, waitForElementToBeRemoved, within } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider} from 'react-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import userEvent from "@testing-library/user-event";
@@ -8,9 +8,46 @@ import Home from './Home/Home.jsx';
 import Shop from './Shop/Shop.jsx';
 import Cart from './Cart/Cart.jsx';
 import ErrorPage from './ErrorPage.jsx';
+import { input } from '@testing-library/user-event/dist/cjs/event/input.js';
 
-//TODO: Mock fetch function window. fetch = vi.fn()
-//to test adding Shop articles to Cart
+
+let queryClient
+const mockedItems = [
+        {"id": 0,
+        "title": "Article 1",
+        "price": 10,
+        "description": "string",
+        "category": "jewelry",
+        "image": "http://example.com"
+        },
+        {
+        "id": 1,
+        "title": "Article 2",
+        "price": 20,
+        "description": "string",
+        "category": "clothing",
+        "image": "http://example.com"
+        }
+]
+beforeEach(()=>{
+    queryClient = new QueryClient({
+                defaultOptions: {
+                    queries: {
+                        retry: false
+                    }
+                }
+        })
+})
+
+
+
+window.fetch = vi.fn(()=>{
+    return new Promise((resolve)=>{
+        setTimeout(()=>{
+            resolve(new Response(JSON.stringify(mockedItems),{status:200}))
+        },50)
+    })
+})
 
 describe('Test app',()=>{
     const routes = [
@@ -27,9 +64,10 @@ describe('Test app',()=>{
           }
         ]
         let router = createMemoryRouter(routes)
-        const queryClient = new QueryClient()
+        
 
     it('Renders app initially at home', () => {
+        const queryClient = new QueryClient()
         render(
         <QueryClientProvider client={queryClient}>
               <RouterProvider router={router}></RouterProvider>
@@ -46,6 +84,7 @@ describe('Test app',()=>{
     });
 
     it('Changes routes correctly',async ()=>{
+        const queryClient = new QueryClient()
         render(
         <QueryClientProvider client={queryClient}>
               <RouterProvider router={router}></RouterProvider>
@@ -57,8 +96,6 @@ describe('Test app',()=>{
         const shopLink = screen.getByText(/Shop/)
         await user.click(shopLink)
         expect(screen.getByRole('navigation')).toBeInTheDocument()
-        const input = screen.getByRole('textbox')
-        expect(input).toBeInTheDocument()
         const loadingShop = screen.getByTestId('loading-shop')
         expect(loadingShop).toBeInTheDocument()
         //screen.debug()
@@ -77,16 +114,153 @@ describe('Test app',()=>{
     })
 
     describe('Shop page',()=>{
-        it('Shows loading page',()=>{
+
+        
+        
+        
+        it('Shows loading page',async ()=>{
             render(
             <QueryClientProvider client={queryClient}>
                 <RouterProvider router={router}></RouterProvider>
-                </QueryClientProvider>
+            </QueryClientProvider>
+            );
+        
+        const user = userEvent.setup()
+        
+        const shopLink = screen.getByText(/Shop/)
+        await user.click(shopLink)
+        const loadingShop = await screen.findByTestId('loading-shop')
+        expect(loadingShop).toBeInTheDocument()
+        //screen.debug()
+        })
+
+        it('Shows shop page with items',async()=>{
+
+            render(
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={router}></RouterProvider>
+            </QueryClientProvider>
             );
 
-        const user = userEvent.setup()
+            const user = userEvent.setup()
+            const shopLink = screen.getByText(/Shop/)
+            await user.click(shopLink)
+            const article1 = await screen.findByText('Article 1')
+            expect(article1).toBeInTheDocument()
+
+        })
+
+        it('Stops you from adding an item with 0 selected',async ()=>{
+            render(
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={router}></RouterProvider>
+            </QueryClientProvider>
+            );
+
+            const user = userEvent.setup()
+            const shopLink = screen.getByText(/Shop/)
+            await user.click(shopLink)
+            const article1 = await screen.findByRole('article',{name:'Article 1'})
+            expect(article1).toBeInTheDocument()
+            const button = within(article1).getByText(/Add to cart/i)
+            await user.click(button)
+            const cartLink = screen.getByText(/Cart/)
+            await user.click(cartLink)
+            expect(screen.getByText(/No items added yet/)).toBeInTheDocument()
+        })
+
+        it('Allows you to type only valid number of items',async ()=>{
+            render(
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={router}></RouterProvider>
+            </QueryClientProvider>
+            );
+
+            const user = userEvent.setup()
+            const shopLink = screen.getByText(/Shop/)
+            await user.click(shopLink)
+
+            const article1 = await screen.findByRole('article',{name:'Article 1'})
+            expect(article1).toBeInTheDocument()
+            const input = within(article1).getByRole('textbox')
+            await user.type(input,'10.5')
+            expect(input.value).toBe('105')
+            await user.clear(input)
+            expect(input.value).toBe('0')
+            await user.type(input,'-10.4')
+            expect(input.value).toBe('104')
+            await user.clear(input)
+            await user.type(input,'abc')
+            expect(input.value).toBe('0')
+        })
+
+        it('Filter items by title or category',async ()=>{
+            render(
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={router}></RouterProvider>
+            </QueryClientProvider>
+            );
+
+            const user = userEvent.setup()
+            const shopLink = screen.getByText(/Shop/)
+            await user.click(shopLink)
+
+            const article1 = await screen.findByText('Article 1')
+            expect(article1).toBeInTheDocument()
+            const input = screen.getByPlaceholderText(/Search items by/)
+            await user.type(input,'jewelry') 
+            expect(screen.queryByText('Article 2')).not.toBeInTheDocument()
+
+            await user.clear(input)
+            await user.type(input, 'clothing')
+            expect(screen.queryByText('Article 1')).not.toBeInTheDocument()
+            expect(screen.getByText('Article 2')).toBeInTheDocument()
+
+            await user.clear(input)
+            await user.type(input, 'Article 1')
+            expect(screen.getByText('Article 1')).toBeInTheDocument()
+            expect(screen.queryByText('Article 2')).not.toBeInTheDocument()
+
+            //screen.debug()    
         })
         
+        it('Adds items to Cart', async ()=>{
+            render(
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={router}></RouterProvider>
+            </QueryClientProvider>
+            )
+
+            const user = userEvent.setup()
+            const shopLink = screen.getByText(/Shop/)
+            await user.click(shopLink)
+
+            const article1 = await screen.findByRole('article',{name:'Article 1'})
+            expect(article1).toBeInTheDocument()
+            const input = within(article1).getByRole('textbox')
+            const addToCart1 = within(article1).getByText(/Add to cart/i)
+            await user.type(input,'100')
+            await user.click(addToCart1)
+
+            const article2 = await screen.findByRole('article',{name:'Article 2'})
+            expect(article2).toBeInTheDocument()
+            const input2 = within(article2).getByRole('textbox')
+            const addToCart2 = within(article2).getByText(/Add to cart/i)
+            await user.type(input2,'200')
+            await user.click(addToCart2)
+            expect(screen.getByRole('link',{name: /Cart\(2\)/})).toBeInTheDocument()
+            
+            const cartLink = screen.getByText(/Cart/)
+            await user.click(cartLink)
+
+            expect(screen.getByRole('heading',{name: 'Selected: 100'})).toBeInTheDocument()
+            expect(screen.getByRole('heading',{name: 'Price each: $10.00'})).toBeInTheDocument()
+            expect(screen.getByRole('heading',{name: 'Total: $1000.00'})).toBeInTheDocument()
+
+            expect(screen.getByRole('heading',{name: 'Selected: 200'})).toBeInTheDocument()
+            expect(screen.getByRole('heading',{name: 'Price each: $20.00'})).toBeInTheDocument()
+            expect(screen.getByRole('heading',{name: 'Total: $4000.00'})).toBeInTheDocument()
+        })
         
     })
 

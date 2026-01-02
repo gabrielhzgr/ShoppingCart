@@ -5,7 +5,14 @@ main >input{
     background-color: var(--third-color);
     border-bottom: 2px solid var(--primary-color);
     padding: 5px;
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+button.reset{
+    padding: 2px 5px;
+    border-radius: 25px;
 }
 
 main{

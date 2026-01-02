@@ -38,7 +38,7 @@ export default function Card({item}){
     }
 
     return (
-        <article key={item.id}>
+        <article key={item.id} aria-label={item.title}>
             <img src={item.image} alt={item.title} />
             <section className="info">
                 <h2 className="price">$ {item.price}</h2>
