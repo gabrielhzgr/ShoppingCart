@@ -147,7 +147,6 @@ describe('Test app',()=>{
             await user.click(shopLink)
             const article1 = await screen.findByText('Article 1')
             expect(article1).toBeInTheDocument()
-
         })
 
         it('Stops you from adding an item with 0 selected',async ()=>{
@@ -192,6 +191,35 @@ describe('Test app',()=>{
             await user.clear(input)
             await user.type(input,'abc')
             expect(input.value).toBe('0')
+        })
+
+        it("Changes quantity of items' inputs", async ()=>{
+            render(
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={router}></RouterProvider>
+            </QueryClientProvider>
+            );
+
+            const user = userEvent.setup()
+            const shopLink = screen.getByText(/Shop/)
+            await user.click(shopLink)
+            
+            const article1 = await screen.findByRole('article',{name:'Article 1'})
+            const input = within(article1).getByRole('textbox')
+            const lessArticle1 = within(article1).getByText('-')
+            const moreArticle1 = within(article1).getByText('+')
+            await user.type(input,'50')
+            await user.click(lessArticle1)
+            await user.click(lessArticle1)
+            expect(input.value).toBe('48')
+            await user.click(moreArticle1)
+            await user.click(moreArticle1)
+            await user.click(moreArticle1)
+            expect(input.value).toBe('51')
+            
+            
+
+
         })
 
         it('Filter items by title or category',async ()=>{
@@ -268,6 +296,11 @@ describe('Test app',()=>{
             expect(screen.getByRole('heading',{name: 'Price each: $10.00'})).toBeInTheDocument()
             expect(screen.getByRole('heading',{name: 'Total: $1010.00'})).toBeInTheDocument()
 
+            const cartArt2 = screen.getByRole('article',{name:'Article 2'})
+            await user.click(within(cartArt2).getByText('remove'))
+            expect(screen.getByRole('heading',{name: 'Selected: 199'})).toBeInTheDocument()
+            expect(screen.getByRole('heading',{name: 'Price each: $20.00'})).toBeInTheDocument()
+            expect(screen.getByRole('heading',{name: 'Total: $3980.00'})).toBeInTheDocument()
         })
 
         
