@@ -70,7 +70,7 @@ export default function Card({item, cartItems, setCartItems}){
                     </div> 
                     {deleting ? <div className={`confirmation-removal`}>
                         <h2 className="info">Proceed to remove?</h2>
-                        <button className="yes-delete"onClick={()=>{
+                        <button className="yes-delete" onClick={()=>{
                             let cartCopy = {...cartItems}
                             delete cartCopy[item.id]
                             setCartItems(cartCopy)

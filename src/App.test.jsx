@@ -11,6 +11,8 @@ import ErrorPage from './ErrorPage.jsx';
 import { input } from '@testing-library/user-event/dist/cjs/event/input.js';
 
 
+//TODO test for modal popup
+
 let queryClient
 const mockedItems = [
         {"id": 0,
@@ -251,7 +253,9 @@ describe('Test app',()=>{
 
             //screen.debug()    
         })
-        
+    })
+
+    describe('Cart page',()=>{
         it('Adds items to Cart', async ()=>{
             render(
             <QueryClientProvider client={queryClient}>
@@ -303,8 +307,46 @@ describe('Test app',()=>{
             expect(screen.getByRole('heading',{name: 'Total: $3980.00'})).toBeInTheDocument()
         })
 
-        
-        
+        it('Confirmation deletion modal works',async ()=>{
+            render(
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={router}></RouterProvider>
+            </QueryClientProvider>
+            )
+
+            const user = userEvent.setup()
+            const shopLink = screen.getByText(/Shop/)
+            await user.click(shopLink)
+
+            const article1 = await screen.findByRole('article',{name:'Article 1'})
+            expect(article1).toBeInTheDocument()
+            const input = within(article1).getByRole('textbox')
+            const addToCart1 = within(article1).getByText(/Add to cart/i)
+            await user.type(input,'2')
+            await user.click(addToCart1)
+
+            const article2 = await screen.findByRole('article',{name:'Article 2'})
+            expect(article2).toBeInTheDocument()
+            const input2 = within(article2).getByRole('textbox')
+            const addToCart2 = within(article2).getByText(/Add to cart/i)
+            await user.type(input2,'2')
+            await user.click(addToCart2)
+            expect(screen.getByRole('link',{name: /Cart\(2\)/})).toBeInTheDocument()
+            
+            const cartLink = screen.getByText(/Cart/)
+            await user.click(cartLink)
+
+            const cartArt1 = screen.getByRole('article',{name:'Article 1'})
+            await user.click(within(cartArt1).getByText('remove'))
+            await user.click(within(cartArt1).getByText('remove'))
+            await user.click(within(cartArt1).getByRole('button',{name:'Yes'}))
+            expect(cartArt1).not.toBeInTheDocument()
+            const cartArt2 = screen.getByRole('article',{name:'Article 2'})
+            await user.click(within(cartArt2).getByText('delete'))
+            await user.click(within(cartArt2).getByRole('button',{name:'Yes'}))
+            expect(cartArt2).not.toBeInTheDocument()
+        })
+
     })
 
 })
