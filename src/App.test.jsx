@@ -345,6 +345,12 @@ describe('Test app',()=>{
             await user.click(within(cartArt2).getByText('delete'))
             await user.click(within(cartArt2).getByRole('button',{name:'Yes'}))
             expect(cartArt2).not.toBeInTheDocument()
+
+            await user.click(shopLink)
+            await user.click(cartLink)
+            expect(cartArt1).not.toBeInTheDocument()
+            expect(cartArt2).not.toBeInTheDocument()
+
         })
 
     })
